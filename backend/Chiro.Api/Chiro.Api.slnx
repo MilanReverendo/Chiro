@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Chiro.Api/Chiro.Api.csproj" />
+  <Project Path="Chiro.Application/Chiro.Application.csproj" Id="cd399691-ccf8-4550-ad90-575f83bdb59b" />
+  <Project Path="Chiro.Domain/Chiro.Domain.csproj" Id="196bf8ca-b4a8-4d94-9cad-c31cddb60877" />
+  <Project Path="Chiro.Infrastructure/Chiro.Infrastructure.csproj" Id="44f6df3d-9ff5-4a87-adfc-d8cebb651ffd" />
+  <Project Path="Chiro.Presentation/Chiro.Presentation.csproj" Id="3c0ad6c5-b430-4b65-8437-484649390a9d" />
+</Solution>
