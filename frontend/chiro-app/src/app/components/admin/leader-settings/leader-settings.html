@@ -1,0 +1,102 @@
+<div class="p-8">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <p class="text-xs font-bold tracking-[0.25em] uppercase text-[#e63946] mb-1">Beheer</p>
+      <h1 class="text-3xl font-black text-[#1a1a2e]">Leiding</h1>
+    </div>
+  </div>
+
+  <!-- Table -->
+  @if (users.length > 0) {
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+
+      <table class="w-full text-sm">
+
+        <!-- Head -->
+        <thead>
+        <tr class="border-b border-slate-100 bg-slate-50">
+          <th class="text-left px-6 py-4 font-black uppercase tracking-widest text-xs text-slate-400">Username</th>
+          <th class="text-left px-6 py-4 font-black uppercase tracking-widest text-xs text-slate-400">Naam</th>
+          <th class="text-left px-6 py-4 font-black uppercase tracking-widest text-xs text-slate-400">Groepsleider</th>
+          <th class="text-left px-6 py-4 font-black uppercase tracking-widest text-xs text-slate-400">Groep</th>
+          <th class="px-6 py-4"></th>
+        </tr>
+        </thead>
+
+        <!-- Body -->
+        <tbody>
+          @for (user of users; track user.id) {
+            <tr class="border-b border-slate-50 hover:bg-slate-50 transition-colors duration-150">
+
+              <!-- Username -->
+              <td class="px-6 py-4 font-bold text-[#1a1a2e]">
+                {{ user.username }}
+              </td>
+
+              <!-- Name -->
+              <td class="px-6 py-4 text-slate-500">
+                {{ user.firstName }} {{ user.lastName }}
+              </td>
+
+              <!-- Toggle -->
+              <td class="px-6 py-4">
+                <label class="flex items-center gap-3 cursor-pointer">
+
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="user.isGroupLeader"
+                    class="w-4 h-4 rounded border-slate-300 text-[#e63946] focus:ring-[#e63946]"
+                  >
+
+                  <span class="text-sm font-semibold"
+                        [ngClass]="user.isGroupLeader ? 'text-green-600' : 'text-slate-400'">
+                    {{ user.isGroupLeader ? 'Ja' : 'Nee' }}
+                  </span>
+
+                </label>
+              </td>
+
+              <!-- Select -->
+              <td class="px-6 py-4">
+                <select
+                  [(ngModel)]="user.groupId"
+                  class="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-[#1a1a2e] focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/20 outline-none transition-all"
+                >
+                  <option [ngValue]="null">Geen groep</option>
+                  @for (group of groups; track group.id) {
+                    <option [value]="group.id">{{ group.name }}</option>
+                  }
+                </select>
+              </td>
+
+              <!-- Actions -->
+              <td class="px-6 py-4">
+                <div class="flex items-center justify-end gap-2">
+                  <button
+                    (click)="saveUser(user)"
+                    class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest text-white bg-[#e63946] hover:bg-[#c1121f] shadow-md shadow-[#e63946]/30 transition-all active:scale-95"
+                  >
+                    Opslaan
+                  </button>
+                </div>
+              </td>
+
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
+  }
+
+  <!-- Empty state -->
+  @if (users.length === 0) {
+    <div class="text-center py-20 text-slate-400">
+      <p class="text-4xl mb-3">👤</p>
+      <p class="font-semibold">Geen gebruikers gevonden.</p>
+    </div>
+  }
+
+</div>

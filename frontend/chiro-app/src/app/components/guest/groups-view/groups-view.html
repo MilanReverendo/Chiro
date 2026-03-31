@@ -1,0 +1,81 @@
+<div class="p-8">
+
+  <!-- Header -->
+  <div class="mb-8">
+    <p class="text-xs font-bold tracking-[0.25em] uppercase text-[#e63946] mb-1">Overzicht</p>
+    <h1 class="text-3xl font-black text-[#1a1a2e]">Groepen</h1>
+  </div>
+
+  <!-- Loading -->
+  @if (isLoading) {
+    <div class="flex items-center gap-3 text-slate-400 text-sm font-semibold">
+      <span class="w-4 h-4 border-2 border-[#e63946] border-t-transparent rounded-full animate-spin"></span>
+      Laden...
+    </div>
+  }
+
+  <!-- Groups grid -->
+  @if (!isLoading && groups.length > 0) {
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+      @for (group of groups; track group.id) {
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 hover:shadow-md transition-all duration-200">
+
+          <!-- Group name -->
+          <h2 class="text-lg font-black text-[#1a1a2e] mb-1">
+            {{ group.name }}
+          </h2>
+
+          <!-- Description -->
+          <p class="text-sm text-slate-400 mb-4">
+            {{ group.description || 'Geen beschrijving' }}
+          </p>
+
+          <!-- Leaders -->
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
+              Leiding
+            </p>
+
+            @if (group.leaders && group.leaders.length > 0) {
+              <div class="flex flex-wrap gap-2">
+
+                @for (leader of group.leaders; track leader.id) {
+                  <div class="flex items-center gap-2 bg-slate-50 border border-slate-100 rounded-xl px-3 py-1.5">
+
+                    <!-- Avatar -->
+                    <div class="w-7 h-7 rounded-full bg-[#e63946]/10 text-[#e63946] flex items-center justify-center text-xs font-black">
+                      {{ leader.username[0] }}
+                    </div>
+
+                    <!-- Name -->
+                    <span class="text-sm font-semibold text-[#1a1a2e]">
+                      {{ leader.firstName }} {{ leader.lastName }}
+                    </span>
+
+                  </div>
+                }
+
+              </div>
+            } @else {
+              <p class="text-sm text-slate-400 italic">
+                Geen leiding toegewezen
+              </p>
+            }
+          </div>
+
+        </div>
+      }
+
+    </div>
+  }
+
+  <!-- Empty state -->
+  @if (!isLoading && groups.length === 0) {
+    <div class="text-center py-20 text-slate-400">
+      <p class="text-4xl mb-3">👥</p>
+      <p class="font-semibold">Nog geen groepen.</p>
+    </div>
+  }
+
+</div>

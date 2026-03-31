@@ -1,0 +1,77 @@
+<div class="p-8 max-w-7xl mx-auto">
+
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-black text-[#1a1a2e] mb-2">Contacteer ons</h1>
+    <p class="text-slate-500 text-lg">
+      Heb je vragen of wil je meer informatie? Vul het formulier in of neem contact op met een van onze groepsleiding.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-12">
+
+    <!-- Contact Form -->
+    <div class="bg-white rounded-2xl shadow-md border border-slate-100 p-8">
+      <h2 class="text-2xl font-black text-[#1a1a2e] mb-6">Stuur ons een bericht</h2>
+
+      <form (ngSubmit)="submitForm(contactForm)" #contactForm="ngForm" class="flex flex-col gap-4">
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Naam</label>
+          <input type="text" name="name" ngModel required
+                 class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/20 outline-none text-sm font-semibold text-[#1a1a2e] transition-all">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Email</label>
+          <input type="email" name="email" ngModel required
+                 class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/20 outline-none text-sm font-semibold text-[#1a1a2e] transition-all">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Bericht</label>
+          <textarea name="message" ngModel rows="5" required
+                    class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/20 outline-none text-sm text-[#1a1a2e] transition-all resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+                class="mt-4 px-6 py-2.5 bg-[#e63946] hover:bg-[#c1121f] text-white text-sm font-black uppercase tracking-widest rounded-xl shadow-md shadow-[#e63946]/30 transition-all active:scale-95">
+          Verstuur
+        </button>
+      </form>
+    </div>
+
+    <!-- Group Leaders -->
+    <div>
+      <h2 class="text-2xl font-black text-[#1a1a2e] mb-6">Onze groepsleiding</h2>
+
+      @if (isLoading) {
+        <p class="text-slate-400 font-semibold">Laden...</p>
+      }
+
+      <div class="grid gap-4 md:grid-cols-2">
+        @for (leader of leaders; track leader.id) {
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 flex items-center gap-4 hover:shadow-md transition-all duration-200">
+
+            <!-- Avatar -->
+            <div class="w-12 h-12 rounded-full bg-[#e63946]/10 text-[#e63946] flex items-center justify-center font-black text-lg">
+              {{ leader.username?.[0] }}
+            </div>
+
+            <!-- Info -->
+            <div class="flex flex-col">
+              <span class="font-semibold text-[#1a1a2e]">{{ leader.firstName }} {{ leader.lastName }}</span>
+              <span class="text-sm text-slate-400">&#64;{{ leader.username }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (!isLoading && leaders.length === 0) {
+        <p class="text-slate-400 italic mt-2">Nog geen groep leiders beschikbaar</p>
+      }
+    </div>
+
+  </div>
+
+</div>
