@@ -2,14 +2,14 @@
 
   <!-- Header -->
   <div class="mb-8">
-    <p class="text-xs font-bold tracking-[0.25em] uppercase text-[#e63946] mb-1">Overzicht</p>
-    <h1 class="text-3xl font-black text-[#1a1a2e]">Groepen</h1>
+    <p class="text-xs font-bold tracking-[0.25em] uppercase text-[var(--color-primary-red)] mb-1">Overzicht</p>
+    <h1 class="text-3xl font-black text-[var(--color-primary-blue)]">Groepen</h1>
   </div>
 
   <!-- Loading -->
   @if (isLoading) {
     <div class="flex items-center gap-3 text-slate-400 text-sm font-semibold">
-      <span class="w-4 h-4 border-2 border-[#e63946] border-t-transparent rounded-full animate-spin"></span>
+      <span class="w-4 h-4 border-2 border-[var(--color-primary-red)] border-t-transparent rounded-full animate-spin"></span>
       Laden...
     </div>
   }
@@ -22,7 +22,7 @@
         <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 hover:shadow-md transition-all duration-200">
 
           <!-- Group name -->
-          <h2 class="text-lg font-black text-[#1a1a2e] mb-1">
+          <h2 class="text-lg font-black text-[var(--color-primary-blue)] mb-1">
             {{ group.name }}
           </h2>
 
@@ -44,12 +44,12 @@
                   <div class="flex items-center gap-2 bg-slate-50 border border-slate-100 rounded-xl px-3 py-1.5">
 
                     <!-- Avatar -->
-                    <div class="w-7 h-7 rounded-full bg-[#e63946]/10 text-[#e63946] flex items-center justify-center text-xs font-black">
+                    <div class="w-7 h-7 rounded-full bg-[var(--color-primary-red)]/10 text-[var(--color-primary-red)] flex items-center justify-center text-xs font-black">
                       {{ leader.username[0] }}
                     </div>
 
                     <!-- Name -->
-                    <span class="text-sm font-semibold text-[#1a1a2e]">
+                    <span class="text-sm font-semibold text-[var(--color-primary-blue)]">
                       {{ leader.firstName }} {{ leader.lastName }}
                     </span>
 
