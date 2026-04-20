@@ -1,9 +1,9 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { UserShortDto } from '../../../../models/user-short-dto';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ContactForm } from '../contact-form/contact-form';
 import { ContactGroupLeaders } from '../contact-group-leaders/contact-group-leaders';
+import { AuthService } from '../../../../services/auth-service';
 
 @Component({
   selector: 'app-contact-page',
@@ -12,7 +12,7 @@ import { ContactGroupLeaders } from '../contact-group-leaders/contact-group-lead
   imports: [FormsModule, ContactForm, ContactGroupLeaders],
 })
 export class ContactPage implements OnInit {
-  private http = inject(HttpClient);
+  authService: AuthService = inject(AuthService);
 
   leaders: UserShortDto[] = [];
   isLoading = signal(true);
@@ -26,7 +26,7 @@ export class ContactPage implements OnInit {
 
   // fetch group leaders when the component is generated
   ngOnInit() {
-    this.http.get<UserShortDto[]>('/api/auth/all-users').subscribe({
+    this.authService.getGroupLeaders().subscribe({
       next: (data) => {
         this.leaders = data;
         this.isLoading.set(false);
