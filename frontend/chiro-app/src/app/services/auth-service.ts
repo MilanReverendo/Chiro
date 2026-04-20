@@ -78,6 +78,10 @@ export class AuthService {
     return this.http.get<UserShortDto[]>('/api/auth/all-users');
   }
 
+  getGroupLeaders() {
+    return this.http.get<UserShortDto[]>('/api/auth/group-leaders');
+  }
+
   modifyUserDetails(user: UserShortDto): Observable<UserShortDto> {
     return this.http.put<UserShortDto>('api/auth/ModifyUserDetails', user);
   }

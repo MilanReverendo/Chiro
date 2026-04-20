@@ -1,0 +1,26 @@
+<div class="p-8 max-w-7xl mx-auto">
+
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-black text-[var(--color-primary-blue)] mb-2">Contacteer ons</h1>
+    <p class="text-slate-500 text-lg">
+      Heb je vragen of wil je meer informatie? Vul het formulier in of neem contact op met een van onze groepsleiding.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-12">
+
+    <!-- Contact Form -->
+    <app-contact-form
+      (submitContactForm)="submitContactForm(contactForm)"
+      [contactForm]="contactForm"
+    />
+
+    <!-- Contact Group Leaders -->
+    <app-contact-group-leaders
+      [groupLeaders]="leaders"
+      [isLoading]="isLoading()"
+    />
+
+  </div>
+</div>

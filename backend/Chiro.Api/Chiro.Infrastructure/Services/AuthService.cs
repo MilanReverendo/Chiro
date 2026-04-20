@@ -19,6 +19,11 @@ namespace Chiro.Infrastructure.Services
             return userMapper.MapToUserShortDtoList(await context.Users.ToListAsync());
         }
 
+        public async Task<IEnumerable<UserShortDto>> GetGroupLeadersAsync()
+        {
+            return userMapper.MapToUserShortDtoList(await context.Users.Where(u => u.IsGroupLeader).ToListAsync());
+        }
+
         public async Task<UserShortDto> GetUserByIdAsync(Guid id)
         {
             var user = await context.Users.FindAsync(id);

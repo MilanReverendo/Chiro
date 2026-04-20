@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cuSEAWKUSds=",
+  "dgSpecHash": "dKIDo6q0qtA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\Chiro.Api\\Chiro.Application\\Chiro.Application.csproj",
+  "projectFilePath": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\backend\\Chiro.Api\\Chiro.Application\\Chiro.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\milan\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\milan\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
