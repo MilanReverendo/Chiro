@@ -1,0 +1,28 @@
+<div>
+  <h2 class="text-2xl font-black text-[var(--color-primary-blue)] mb-6">Onze groepsleiding</h2>
+
+  @if (isLoading()) {
+    <p class="text-slate-400 font-semibold">Laden...</p>
+  }
+
+  <div class="grid gap-4 md:grid-cols-2">
+    @for (leader of groupLeaders(); track leader.id) {
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 flex items-center gap-4 hover:shadow-md transition-all duration-200">
+        <!-- Avatar -->
+        <div class="w-12 h-12 rounded-full bg-[var(--color-primary-red)]/10 text-[var(--color-primary-red)] flex items-center justify-center font-black text-lg">
+          {{ leader.username?.[0] }}
+        </div>
+
+        <!-- Info -->
+        <div class="flex flex-col">
+          <span class="font-semibold text-[var(--color-primary-blue)]">{{ leader.firstName }} {{ leader.lastName }}</span>
+          <span class="text-sm text-slate-400">&#64;{{ leader.username }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (!isLoading() && groupLeaders()!.length === 0) {
+    <p class="text-slate-400 italic mt-2">Nog geen groep leiders beschikbaar</p>
+  }
+</div>

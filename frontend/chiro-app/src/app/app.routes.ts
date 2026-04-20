@@ -9,7 +9,7 @@ import { EventSettings } from './components/admin/event-settings/event-settings'
 import { ProfileSettingsComponent } from './components/admin/profile-settings/profile-settings';
 import { LeaderSettings } from './components/admin/leader-settings/leader-settings';
 import { GroupsView } from './components/guest/groups-view/groups-view';
-import { ContactPage } from './components/guest/contact-page/contact-page';
+import { ContactPage } from './components/guest/contact/contact-page/contact-page';
 
 export const routes: Routes = [
   // Public routes
