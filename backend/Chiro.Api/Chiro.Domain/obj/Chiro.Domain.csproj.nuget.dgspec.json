@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\milan\\Documents\\CODE\\Chiro\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj": {}
+    "C:\\Users\\milan\\Documents\\CODE\\Chiro\\backend\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\milan\\Documents\\CODE\\Chiro\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj": {
+    "C:\\Users\\milan\\Documents\\CODE\\Chiro\\backend\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\backend\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj",
         "projectName": "Chiro.Domain",
-        "projectPath": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj",
+        "projectPath": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\backend\\Chiro.Api\\Chiro.Domain\\Chiro.Domain.csproj",
         "packagesPath": "C:\\Users\\milan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\Chiro.Api\\Chiro.Domain\\obj\\",
+        "outputPath": "C:\\Users\\milan\\Documents\\CODE\\Chiro\\backend\\Chiro.Api\\Chiro.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

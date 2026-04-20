@@ -55,6 +55,7 @@ backend/secrets.json
 # ==========================================
 # General / OS Specific
 # ==========================================
+.vs/
 .DS_Store
 Thumbs.db
 desktop.ini

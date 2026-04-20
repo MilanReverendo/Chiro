@@ -6,6 +6,7 @@ namespace Chiro.Application.Interfaces
     public interface IAuthService
     {
         Task<IEnumerable<UserShortDto>> GetAllUsersAsync();
+        Task<IEnumerable<UserShortDto>> GetGroupLeadersAsync();
         Task<UserShortDto>? GetUserByIdAsync(Guid id);
         Task<User?> RegisterAsync(UserDto request);
         Task<TokenResponseDto?> LoginAsync(UserDto request);

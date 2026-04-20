@@ -23,6 +23,13 @@ namespace Chiro.Presentation.Controllers
             return Ok(users);
         }
 
+        [HttpGet("group-leaders")]
+        public async Task<ActionResult<IEnumerable<User>>> GetGroupLeaders()
+        {
+            var groupLeaders = await authService.GetGroupLeadersAsync();
+            return Ok(groupLeaders);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUserById(Guid id)
         {
