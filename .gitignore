@@ -31,6 +31,10 @@ frontend/src/environments/environment.ts
 # Build results
 backend/[Bb]in/
 backend/[Oo]bj/
+obj/
+bin/
+.vs/
+Debug/
 
 # User-specific files
 backend/*.user
