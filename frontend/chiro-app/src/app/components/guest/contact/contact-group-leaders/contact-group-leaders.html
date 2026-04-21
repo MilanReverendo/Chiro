@@ -5,21 +5,61 @@
     <p class="text-slate-400 font-semibold">Laden...</p>
   }
 
-  <div class="grid gap-4 md:grid-cols-2">
-    @for (leader of groupLeaders(); track leader.id) {
-      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 flex items-center gap-4 hover:shadow-md transition-all duration-200">
-        <!-- Avatar -->
-        <div class="w-12 h-12 rounded-full bg-[var(--color-primary-red)]/10 text-[var(--color-primary-red)] flex items-center justify-center font-black text-lg">
-          {{ leader.username?.[0] }}
-        </div>
+  <div class="py-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      @for (leader of groupLeaders(); track leader.id) {
+        <div class="bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200 p-6 flex flex-col gap-4">
+          <div class="flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-400 to-red-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+              {{ leader.username?.[0] | uppercase }}
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-semibold text-slate-900 text-base leading-tight">
+                {{ leader.firstName }} {{ leader.lastName }}
+              </h3>
+            </div>
+          </div>
 
-        <!-- Info -->
-        <div class="flex flex-col">
-          <span class="font-semibold text-[var(--color-primary-blue)]">{{ leader.firstName }} {{ leader.lastName }}</span>
-          <span class="text-sm text-slate-400">&#64;{{ leader.username }}</span>
+          <!-- Contact Details -->
+          <div class="space-y-3">
+            <div class="flex gap-3 items-center">
+              <span class="text-xs font-medium text-slate-400 flex-shrink-0">Phone</span>
+              <a
+              [href]="'tel:' + leader.phoneNumber"
+              class="text-sm text-slate-700 hover:text-blue-600 transition-colors break-all"
+              >
+              {{ leader.phoneNumber }}
+              </a>
+            </div>
+            <div class="flex gap-3 items-center">
+              <span class="text-xs font-medium text-slate-400 flex-shrink-0">Email</span>
+              <a
+              [href]="'mailto:' + leader.email"
+              class="text-sm text-slate-700 hover:text-blue-600 transition-colors break-all"
+              >
+              {{ leader.email }}
+              </a>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-2 pt-3 border-t border-slate-100">
+            <a
+            [href]="'mailto:' + leader.email"
+            class="flex-1 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md text-xs font-medium text-slate-700 transition-colors text-center"
+            >
+            Email
+            </a>
+            <a
+            [href]="'tel:' + leader.phoneNumber"
+            class="flex-1 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md text-xs font-medium text-slate-700 transition-colors text-center"
+            >
+            Call
+            </a>
+          </div>
         </div>
-      </div>
-    }
+      }
+    </div>
   </div>
 
   @if (!isLoading() && groupLeaders()!.length === 0) {
