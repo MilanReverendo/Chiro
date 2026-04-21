@@ -3,6 +3,9 @@ export interface UserShortDto {
   username: string;
   firstName?: string;
   lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  dateOfBirth?: string;
   isGroupLeader: boolean;
   groupId?: string;
 }
