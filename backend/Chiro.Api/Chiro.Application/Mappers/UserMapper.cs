@@ -20,6 +20,9 @@ namespace Chiro.Application.Mappers
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                DateOfBirth = user.DateOfBirth,
                 IsGroupLeader = user.IsGroupLeader,
                 GroupId = user.GroupId
             };
