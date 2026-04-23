@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Chiro.Infrastructure.Services;
 using Chiro.Domain.Entities;
 using Chiro.Application.Dtos;
 using Chiro.Application.Interfaces;
@@ -96,7 +91,6 @@ namespace Chiro.Presentation.Controllers
 
         }
 
-        // AuthController.cs
         [Authorize]
         [HttpPut("change-password")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto request)

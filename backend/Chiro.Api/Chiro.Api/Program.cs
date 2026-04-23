@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Storage.Blobs;
 using Chiro.Application;
 using Chiro.Infrastructure;
 using Chiro.Infrastructure.Persistence.Seed;
@@ -14,6 +16,17 @@ builder.Services.AddControllers();
     //.AddApplicationPart(typeof(Chiro.Presentation.Controllers.AuthController).Assembly);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+//register blobserviceclient
+builder.Services.AddSingleton(x =>
+{
+    var accountUrl = builder.Configuration["AzureBlobStorage:AccountUrl"];
+    var containerName = builder.Configuration["AzureBlobStorage:ContainerName"];
+
+    return new BlobContainerClient(
+        new Uri($"{accountUrl}/{containerName}"),
+        new DefaultAzureCredential());
+});
 
 // Register layers
 builder.Services
