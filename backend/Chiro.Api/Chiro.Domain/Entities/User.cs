@@ -10,6 +10,7 @@
         public string? PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public bool IsGroupLeader { get; set; }
+        public string? ProfileImageUrl { get; set; } = string.Empty;
         public string  PasswordHash { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public string? RefreshToken { get; set; }

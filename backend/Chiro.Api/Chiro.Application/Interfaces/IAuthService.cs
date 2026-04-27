@@ -1,5 +1,6 @@
 ﻿using Chiro.Application.Dtos;
 using Chiro.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace Chiro.Application.Interfaces
 {
@@ -13,5 +14,6 @@ namespace Chiro.Application.Interfaces
         Task<TokenResponseDto?> RefreshTokensAsync(RefreshTokenRequestDto request);
         Task<UserShortDto> ModifyDetailsAsync(UserShortDto request);
         Task<bool> ChangePasswordAsync(Guid userId, ChangePasswordDto request);
+        Task<string> UploadProfileImageAsync(Guid userId, IFormFile file);
     }
 }

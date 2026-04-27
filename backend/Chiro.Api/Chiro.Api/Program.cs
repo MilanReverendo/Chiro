@@ -5,7 +5,10 @@ using Chiro.Infrastructure;
 using Chiro.Infrastructure.Persistence.Seed;
 using Chiro.Infrastructure.Seed;
 using Chiro.Presentation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

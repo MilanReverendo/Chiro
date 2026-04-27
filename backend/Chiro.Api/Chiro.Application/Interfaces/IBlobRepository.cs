@@ -9,8 +9,9 @@ namespace Chiro.Application.Interfaces
 {
     public interface IBlobRepository
     {
-        Task<BlobObject> GetBlobFile(string url);
-        Task<string> UploadBlobFile(Stream stream, string fileName);
-        Task DeleteBlob(string path);
+        Task<string> UploadUserProfileImageAsync(Guid userId, Stream stream, string contentType);
+        Task<string> UploadGroupImageAsync(Guid userId, Stream stream, string contentType);
+        Task DeleteUserProfileImageAsync(Guid userId);
+        Task DeleteGroupImageAsync(Guid groupId);
     }
 }

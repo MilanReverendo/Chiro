@@ -14,63 +14,56 @@ namespace Chiro.Infrastructure.Repositories
     public class BlobRepository : IBlobRepository
     {
         private readonly BlobContainerClient _containerClient;
-        public static readonly List<string> ImageExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".svg" };
 
         public BlobRepository(BlobContainerClient containerClient)
         {
             _containerClient = containerClient;
         }
 
-        public async Task DeleteBlob(string path)
+        public Task DeleteGroupImageAsync(Guid groupId)
         {
-            var fileName = Path.GetFileName(new Uri(path).LocalPath);
-            var blobClient = _containerClient.GetBlobClient(fileName);
-            await blobClient.DeleteIfExistsAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<BlobObject> GetBlobFile(string url)
+        public Task DeleteUserProfileImageAsync(Guid userId)
         {
-            var fileName = Path.GetFileName(new Uri(url).LocalPath);
+            throw new NotImplementedException();
+        }
 
-            try
+        public async Task<string> UploadGroupImageAsync(Guid groupId, Stream stream, string contentType)
+        {
+            var fileName = $"groups/{groupId}/profile.jpg";
+
+            var blobClient = _containerClient.GetBlobClient(fileName);
+
+            await blobClient.UploadAsync(stream, new BlobUploadOptions
             {
-                var blobClient = _containerClient.GetBlobClient(fileName);
-                if (await blobClient.ExistsAsync()) 
-                { 
-                    var response = await blobClient.DownloadAsync();
-                    var content = response.Value;
-                    var downloadedData = content.Content;
-                    if (ImageExtensions.Contains(Path.GetExtension(fileName).ToLower()))
-                    {
-                        var extension = Path.GetExtension(fileName).ToLower();
-                        return new BlobObject { Content = downloadedData, ContentType = "image/" + extension.Remove(0,1) };
-                    }
-                    else
-                    {
-                        return new BlobObject
-                        {
-                            Content = downloadedData,
-                            ContentType = content.Details.ContentType
-                        };
-                    }
-                }
-                else
+                HttpHeaders = new BlobHttpHeaders
                 {
-                    return null;
+                    ContentType = contentType
                 }
-            }
-            catch (Exception ex) 
-            {
-                throw;
-            }
-        }
-
-        public async Task<string> UploadBlobFile(Stream stream, string fileName)
-        {
-            var blobClient = _containerClient.GetBlobClient(fileName);
-            await blobClient.UploadAsync(stream, overwrite: true);
+            });
 
             return blobClient.Uri.AbsoluteUri;
         }
+
+        public async Task<string> UploadUserProfileImageAsync(Guid userId, Stream stream, string contentType)
+        {
+            var fileName = $"users/{userId}/profile.jpg";
+
+            var blobClient = _containerClient.GetBlobClient(fileName);
+
+            await blobClient.UploadAsync(stream, new BlobUploadOptions
+            {
+                HttpHeaders = new BlobHttpHeaders
+                {
+                    ContentType = contentType
+                }
+            });
+
+            return blobClient.Uri.AbsoluteUri;
+        }
+
+
     }
 }
