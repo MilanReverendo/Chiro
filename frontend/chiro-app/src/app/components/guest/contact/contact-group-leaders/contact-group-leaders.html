@@ -10,9 +10,16 @@
       @for (leader of groupLeaders(); track leader.id) {
         <div class="bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200 p-6 flex flex-col gap-4">
           <div class="flex gap-4 items-start">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-400 to-red-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
-              {{ leader.username?.[0] | uppercase }}
-            </div>
+            @if (leader.profileImageUrl) {
+              <img
+                class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                [ngSrc]="leader.profileImageUrl" width="44" height="44" alt="group leader profile image"
+              >
+            } @else {
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-400 to-red-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                {{ leader.username[0] | uppercase }}
+              </div>
+            }
             <div class="flex-1 min-w-0">
               <h3 class="font-semibold text-slate-900 text-base leading-tight">
                 {{ leader.firstName }} {{ leader.lastName }}
@@ -54,7 +61,7 @@
             [href]="'tel:' + leader.phoneNumber"
             class="flex-1 px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md text-xs font-medium text-slate-700 transition-colors text-center"
             >
-            Call
+            Bellen
             </a>
           </div>
         </div>

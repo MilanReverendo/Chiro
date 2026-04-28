@@ -16,6 +16,7 @@ namespace Chiro.Application.Dtos
         public string? PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public bool IsGroupLeader { get; set; }
+        public string? ProfileImageUrl { get; set; }
         public Guid? GroupId { get; set; }
     }
 }

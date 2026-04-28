@@ -7,5 +7,6 @@ export interface UserShortDto {
   phoneNumber?: string;
   dateOfBirth?: string;
   isGroupLeader: boolean;
+  profileImageUrl?: string;
   groupId?: string;
 }

@@ -11,7 +11,7 @@ namespace Chiro.Application.Interfaces
     {
         Task<string> UploadUserProfileImageAsync(Guid userId, Stream stream, string contentType);
         Task<string> UploadGroupImageAsync(Guid userId, Stream stream, string contentType);
-        Task DeleteUserProfileImageAsync(Guid userId);
+        Task DeleteUserProfileImageAsync(string url);
         Task DeleteGroupImageAsync(Guid groupId);
     }
 }

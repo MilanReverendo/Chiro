@@ -25,9 +25,13 @@ namespace Chiro.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteUserProfileImageAsync(Guid userId)
+        public async Task DeleteUserProfileImageAsync(string url)
         {
-            throw new NotImplementedException();
+            var uri = new Uri(url);
+            //extract absolute blob path from the url
+            var blobPath = uri.AbsolutePath.TrimStart('/').Split('/', 2)[1];
+            var blobClient = _containerClient.GetBlobClient(blobPath);
+            await blobClient.DeleteIfExistsAsync();
         }
 
         public async Task<string> UploadGroupImageAsync(Guid groupId, Stream stream, string contentType)
@@ -49,7 +53,8 @@ namespace Chiro.Infrastructure.Repositories
 
         public async Task<string> UploadUserProfileImageAsync(Guid userId, Stream stream, string contentType)
         {
-            var fileName = $"users/{userId}/profile.jpg";
+            //Generate new name every time to avoid caching issues
+            var fileName = $"users/{userId}/{DateTime.UtcNow.ToString("yyyyMMddHHmmssfff")}/profile.jpg";
 
             var blobClient = _containerClient.GetBlobClient(fileName);
 

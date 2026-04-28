@@ -24,6 +24,7 @@ namespace Chiro.Application.Mappers
                 PhoneNumber = user.PhoneNumber,
                 DateOfBirth = user.DateOfBirth,
                 IsGroupLeader = user.IsGroupLeader,
+                ProfileImageUrl = user.ProfileImageUrl,
                 GroupId = user.GroupId
             };
         }

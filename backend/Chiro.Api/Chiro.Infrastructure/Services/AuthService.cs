@@ -179,8 +179,15 @@ namespace Chiro.Infrastructure.Services
             var user = await context.Users.FindAsync(userId);
             if (user != null)
             {
+                var oldImageUrl = user.ProfileImageUrl;
+
                 user.ProfileImageUrl = url;
                 await context.SaveChangesAsync();
+
+                if (oldImageUrl is not null)
+                {
+                    await _blobRepository.DeleteUserProfileImageAsync(oldImageUrl);
+                }
             }
 
             return url;
