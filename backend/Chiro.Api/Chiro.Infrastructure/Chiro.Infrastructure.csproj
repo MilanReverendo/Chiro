@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.27.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.13">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chiro.Application\Chiro.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Azure\" />
   </ItemGroup>
 
 </Project>

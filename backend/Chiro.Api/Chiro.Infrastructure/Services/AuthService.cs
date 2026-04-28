@@ -2,6 +2,8 @@
 using Chiro.Application.Interfaces;
 using Chiro.Domain.Entities;
 using Chiro.Infrastructure.Data;
+using Chiro.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +14,7 @@ using System.Security.Cryptography;
 
 namespace Chiro.Infrastructure.Services
 {
-    public class AuthService(ChiroDbContext context, IConfiguration configuration, IUserMapper userMapper) : IAuthService
+    public class AuthService(ChiroDbContext context, IConfiguration configuration, IUserMapper userMapper, IBlobRepository _blobRepository) : IAuthService
     {
         public async Task<IEnumerable<UserShortDto>> GetAllUsersAsync()
         {
@@ -163,6 +165,32 @@ namespace Chiro.Infrastructure.Services
             user.PasswordHash = new PasswordHasher<User>().HashPassword(user, request.NewPassword);
             await context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<string> UploadProfileImageAsync(Guid userId, IFormFile file)
+        {
+            using var stream = file.OpenReadStream();
+
+            var url = await _blobRepository.UploadUserProfileImageAsync(
+                userId,
+                stream,
+                file.ContentType);
+
+            var user = await context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                var oldImageUrl = user.ProfileImageUrl;
+
+                user.ProfileImageUrl = url;
+                await context.SaveChangesAsync();
+
+                if (oldImageUrl is not null)
+                {
+                    await _blobRepository.DeleteUserProfileImageAsync(oldImageUrl);
+                }
+            }
+
+            return url;
         }
     }
 }

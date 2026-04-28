@@ -1,5 +1,6 @@
 ﻿using Chiro.Application.Interfaces;
 using Chiro.Infrastructure.Data;
+using Chiro.Infrastructure.Repositories;
 using Chiro.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,9 @@ public static class DependencyInjection
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IGroupService, GroupService>();
         services.AddScoped<IEventService, EventService>();
+
+        // register repository
+        services.AddScoped<IBlobRepository, BlobRepository>();
 
         return services;
     }

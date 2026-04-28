@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Chiro.Infrastructure.Services;
-using Chiro.Domain.Entities;
-using Chiro.Application.Dtos;
+﻿using Chiro.Application.Dtos;
 using Chiro.Application.Interfaces;
+using Chiro.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Chiro.Presentation.Controllers
 {
@@ -96,7 +92,6 @@ namespace Chiro.Presentation.Controllers
 
         }
 
-        // AuthController.cs
         [Authorize]
         [HttpPut("change-password")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto request)
@@ -105,6 +100,17 @@ namespace Chiro.Presentation.Controllers
             var result = await authService.ChangePasswordAsync(userId, request);
             if (!result) return BadRequest("Huidig wachtwoord is onjuist.");
             return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("profile-picture")]
+        public async Task<IActionResult> UploadProfilePicture(IFormFile file)
+        {
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var url = await authService.UploadProfileImageAsync(userId, file);
+
+            return Ok(url);
         }
     }
 }
